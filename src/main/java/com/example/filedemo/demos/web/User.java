@@ -16,12 +16,17 @@
 
 package com.example.filedemo.demos.web;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     private String name;
@@ -31,19 +36,5 @@ public class User {
     private String password;
 
     private String token;
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 }

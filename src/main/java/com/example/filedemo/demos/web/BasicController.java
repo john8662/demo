@@ -16,14 +16,14 @@
 
 package com.example.filedemo.demos.web;
 
+import com.example.filedemo.inter.MyService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -32,12 +32,16 @@ import java.util.Scanner;
 @Controller
 public class BasicController {
 
+    @Resource
+    private MyService myService;
+
     // http://127.0.0.1:8080/hello?name=lisi
     @RequestMapping("/hello")
     @ResponseBody
     public String hello(@RequestParam(name = "name", defaultValue = "unknown user") String name,String age) {
         return "Hello " + name+":age："+age;
     }
+
 
     @RequestMapping("/hello2")
     @ResponseBody
@@ -73,6 +77,13 @@ public class BasicController {
             , @RequestParam(name = "age", defaultValue = "12") Integer age, User user) {
         user.setName("zhangsan");
         user.setAge(18);
+    }
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String test(String parm){
+        myService.doSomething(parm);
+        return "ok";
     }
 
     @RequestMapping("/file")
